@@ -21,8 +21,8 @@ provider:
   # commit your .env.
   #
   environment:
-    tableName:notes
     SAMPLE_ENV_VAR: ${env:SAMPLE_ENV_VAR} 
+    tableName: ${env:tableName}
    
 
   # 'iamRoleStatements' defines the permission policy for the Lambda function.
