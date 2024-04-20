@@ -2,9 +2,9 @@ export default function handler(lambda) {
     return async function (event, context) {
       let body, statusCode;
       try {
-            // Run the Lambda
-            body = await lambda(event, context);
-            statusCode = 200;
+        // Run the Lambda
+        body = await lambda(event, context);
+        statusCode = 200;
         } catch (e) {
           // Print out the full error
           console.log(e);
@@ -13,9 +13,8 @@ export default function handler(lambda) {
         }
         // Return HTTP response
         return {
-            statusCode,
-            body: JSON.stringify(body),
+          statusCode,
+          body: JSON.stringify(body),
         };
     };
-}
-    
+}   
