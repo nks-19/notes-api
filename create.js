@@ -21,7 +21,7 @@ export async function main(event, context) {
     };
 
     try {
-        await dynamoDb.send(new PutItemCommand(params));
+        await dynamoDb.put(params).promise();
         return {
             statusCode: 200,
             body: JSON.stringify(params.Item),
