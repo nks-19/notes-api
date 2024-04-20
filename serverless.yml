@@ -12,9 +12,11 @@ plugins:
 
 provider:
   name: aws
-  runtime: nodejs18.x
+  runtime: nodejs16.x
   stage: prod
   region: us-east-1
+  deploymentBucket:
+    name: nks19bucket
   # To load environment variables externally
   # rename env.example to .env and uncomment
   # the following line. Also, make sure to not
@@ -48,3 +50,39 @@ functions:
       - http:
           path: notes
           method: post
+  get:
+  # Defines an HTTP API endpoint that calls the main function in get.js
+  # - path: url path is /notes/{id}
+  # - method: GET request
+    handler: get.main
+    events:
+      - http:
+          path: notes/{id}
+          method: get
+  list:
+    # Defines an HTTP API endpoint that calls the main function in list.js
+    # - path: url path is /notes
+    # - method: GET request
+    handler: list.main
+    events:
+      - http:
+          path: notes
+          method: get
+  update:
+    # Defines an HTTP API endpoint that calls the main function in update.js
+    # - path: url path is /notes/{id}
+    # - method: PUT request
+    handler: update.main
+    events:
+      - http:
+          path: notes/{id}
+          method: put
+  delete:
+    # Defines an HTTP API endpoint that calls the main function in delete.js
+    # - path: url path is /notes/{id}
+    # - method: DELETE request
+    handler: delete.main
+    events:
+      - http:
+          path: notes/{id}
+          method: delete
